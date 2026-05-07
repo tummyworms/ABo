@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abode Kitchen &amp; Bar — Oakmont, PA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: 'Abode4';
+      src: url('https://abodekitchenandbar.com/wp-content/uploads/2026/02/Abode4-regular.woff2') format('woff2'),
+           url('https://abodekitchenandbar.com/wp-content/uploads/2026/02/Abode4-regular.woff') format('woff');
+      font-display: swap;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-snap-type: y proximity; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font: inherit; }
+
+    :root {
+      --sea:      #6FBFB8;
+      --sea-dk:   #3A8880;
+      --sea-mid:  #52A29B;
+      --mist:     #EEF8F6;
+      --mist-dk:  #D4EDE9;
+      --petal:    #F6F1EA;
+      --petal-dk: #EAE4D8;
+      --dusk:     #1E3634;
+      --rose:     #B89490;
+      --rose-lt:  #CCAAA6;
+      --font-brand: 'Abode4', 'Palatino Linotype', serif;
+      --font-body:  'Cormorant Garamond', 'Palatino', Georgia, serif;
+    }
+
+    body {
+      background: var(--petal);
+      color: var(--dusk);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+    }
+    .announce {
+      background: rgba(22,30,24,0);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: .62rem;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: .5rem 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: background .4s, opacity .4s;
+    }
+    .site-header.scrolled .announce {
+      background: rgba(30,54,52,.98);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    nav {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 1.4rem 3rem;
+      transition: background .45s, backdrop-filter .45s, padding .35s, border-color .45s;
+      border-bottom: 1px solid transparent;
+    }
+    .site-header.scrolled nav {
+      background: rgba(30,54,52,.94);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom-color: rgba(238,248,246,.08);
+      padding: .85rem 3rem;
+    }
+    .nav-left, .nav-right {
+      display: flex; gap: 2.2rem; align-items: center;
+    }
+    .nav-right { justify-content: flex-end; }
+    .nav-link {
+      font-family: var(--font-body);
+      font-size: .63rem;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--dusk);
+      opacity: .8;
+      transition: opacity .2s, color .4s;
+    }
+    .nav-link:hover { opacity: 1; }
+    .site-header.scrolled .nav-link { color: var(--mist); opacity: .7; }
+    .site-header.scrolled .nav-link:hover { opacity: 1; }
+    .nav-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .2rem;
+    }
+    .nav-logo-img {
+      height: 40px; width: auto;
+      filter: brightness(0);
+      transition: filter .4s;
+    }
+    .site-header.scrolled .nav-logo-img { filter: brightness(2); }
+    .nav-wordmark {
+      font-family: var(--font-brand);
+      font-size: .88rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--dusk);
+      line-height: 1;
+      transition: color .4s;
+    }
+    .site-header.scrolled .nav-wordmark { color: var(--mist); }
+    .nav-wordmark-sub {
+      font-family: var(--font-body);
+      font-size: .48rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--dusk);
+      opacity: .45;
+      transition: color .4s;
+    }
+    .site-header.scrolled .nav-wordmark-sub { color: var(--mist); }
+    .btn-reserve-nav {
+      font-family: var(--font-body);
+      font-size: .6rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      padding: .55rem 1.5rem;
+      background: var(--dusk);
+      color: var(--mist);
+      display: inline-block;
+      transition: background .2s;
+    }
+    .btn-reserve-nav:hover { background: var(--sea-dk); }
+    .site-header.scrolled .btn-reserve-nav { background: var(--sea); color: var(--dusk); }
+    .site-header.scrolled .btn-reserve-nav:hover { background: var(--sea-mid); }
+
+    /* hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: .5rem;
+      margin-left: auto;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--dusk);
+      transition: background .4s;
+    }
+    .site-header.scrolled .nav-hamburger span { background: var(--mist); }
+
+    /* mobile drawer */
+    .drawer-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.5);
+      z-index: 199;
+      opacity: 0;
+      transition: opacity .35s;
+    }
+    .drawer-overlay.visible { opacity: 1; }
+    .mobile-drawer {
+      display: none;
+      position: fixed;
+      top: 0; right: 0;
+      width: min(300px, 85vw); height: 100vh;
+      background: var(--dusk);
+      z-index: 200;
+      padding: 4.5rem 2.5rem 3rem;
+      flex-direction: column;
+      gap: 1.8rem;
+      transform: translateX(100%);
+      transition: transform .38s cubic-bezier(.22,1,.36,1);
+    }
+    .mobile-drawer.open { transform: translateX(0); }
+    .mobile-drawer a {
+      font-family: var(--font-brand);
+      font-size: 1.9rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(238,248,246,.8);
+    }
+    .mobile-drawer a:hover { color: var(--mist); }
+    .drawer-close {
+      position: absolute;
+      top: 1.4rem; right: 1.4rem;
+      color: rgba(238,248,246,.45);
+      font-size: 1.1rem;
+    }
+
+    /* ── BOTANICALS ── */
+    .bot { pointer-events: none; user-select: none; display: block; }
+    .bot-divider-wrap {
+      display: flex; justify-content: center;
+      overflow: visible; height: 72px;
+    }
+    .bot-divider { width: 100%; height: 72px; color: rgba(238,248,246,.22); }
+    .bot-divider.on-mist { color: rgba(58,136,128,.16); }
+    .bot-ornament {
+      display: block;
+      margin: 0 auto 1.4rem;
+      width: 300px; height: 48px;
+      color: rgba(238,248,246,.5);
+    }
+    .bot-ornament.on-mist { color: rgba(58,136,128,.18); }
+
+    /* ── FLORAL CORNERS ── */
+    .floral-corner {
+      position: absolute;
+      width: 170px; height: 170px;
+      pointer-events: none; user-select: none;
+      overflow: visible; z-index: 0;
+    }
+    .floral-corner.c-tl { top: 10px; left: 10px; }
+    .floral-corner.c-tr { top: 10px; right: 10px; }
+    .floral-corner.c-bl { bottom: 10px; left: 10px; }
+    .floral-corner.c-br { bottom: 10px; right: 10px; }
+    .floral-corner.mist-tone  { color: rgba(238,248,246,.14); }
+    .floral-corner.dusk-tone  { color: rgba(30,54,52,.09); }
+    .floral-corner.sea-tone   { color: rgba(58,136,128,.10); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--petal);
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g fill='none' stroke='%23567A78' stroke-linecap='round'><g transform='translate(44,54) rotate(14)' stroke-opacity='0.042'><path d='M0,-4 C-3,-7 -3,-13 0,-15 C3,-13 3,-7 0,-4' stroke-width='0.75'/><path d='M0,-4 C-3,-7 -3,-13 0,-15 C3,-13 3,-7 0,-4' transform='rotate(90)' stroke-width='0.75'/><path d='M0,-4 C-3,-7 -3,-13 0,-15 C3,-13 3,-7 0,-4' transform='rotate(180)' stroke-width='0.75'/><path d='M0,-4 C-3,-7 -3,-13 0,-15 C3,-13 3,-7 0,-4' transform='rotate(270)' stroke-width='0.75'/><circle r='1.8' stroke-width='0.5'/></g><g transform='translate(130,32) rotate(-9)' stroke-opacity='0.028'><path d='M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3' stroke-width='0.7'/><path d='M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3' transform='rotate(72)' stroke-width='0.7'/><path d='M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3' transform='rotate(144)' stroke-width='0.7'/><path d='M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3' transform='rotate(216)' stroke-width='0.7'/><path d='M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3' transform='rotate(288)' stroke-width='0.7'/><circle r='1.4' stroke-width='0.45'/></g><path d='M72,102 C82,92 90,90 92,96' stroke-opacity='0.032' stroke-width='0.6'/><path d='M92,96 C90,86 86,82 90,80' stroke-opacity='0.032' stroke-width='0.55'/><g transform='translate(162,140) rotate(20)' stroke-opacity='0.036'><path d='M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3' stroke-width='0.7'/><path d='M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3' transform='rotate(90)' stroke-width='0.7'/><path d='M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3' transform='rotate(180)' stroke-width='0.7'/><path d='M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3' transform='rotate(270)' stroke-width='0.7'/><circle r='1.6' stroke-width='0.48'/></g><circle cx='78' cy='150' r='2' fill='%23567A78' fill-opacity='0.04' stroke-width='0'/><circle cx='88' cy='146' r='1.4' fill='%23567A78' fill-opacity='0.034' stroke-width='0'/><circle cx='96' cy='153' r='1.2' fill='%23567A78' fill-opacity='0.028' stroke-width='0'/></g></svg>");
+      background-size: 200px 200px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 5rem 3rem 2rem;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      scroll-snap-align: start;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-size: .65rem;
+      letter-spacing: .38em;
+      text-transform: uppercase;
+      color: var(--sea-mid);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      animation: fadeUp .6s .05s ease both;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: '';
+      width: 36px; height: 1px;
+      background: var(--rose);
+      opacity: .5;
+      flex-shrink: 0;
+    }
+    .hero-wordmark {
+      font-family: var(--font-brand);
+      font-size: clamp(5rem, 15vw, 12rem);
+      line-height: .9;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--dusk);
+      position: relative;
+      z-index: 2;
+      margin-bottom: -2.5rem;
+      animation: fadeUp .75s .12s cubic-bezier(.22,1,.36,1) both;
+    }
+    .hero-building {
+      height: min(620px, 66vh);
+      width: auto;
+      max-width: min(1200px, 98vw);
+      display: block;
+      margin: 0 auto .3rem;
+      position: relative;
+      z-index: 1;
+      animation: buildingIn 1s .25s cubic-bezier(.22,1,.36,1) both;
+    }
+    @keyframes buildingIn {
+      from { opacity: 0; transform: translateY(28px) scale(.975); }
+      to   { opacity: 1; transform: none; }
+    }
+    .hero-building-alt {
+      height: min(520px, 54vh);
+      width: auto;
+      max-width: min(580px, 86vw);
+      display: block;
+      margin: -1rem auto 1.5rem;
+      mix-blend-mode: multiply;
+      position: relative;
+      z-index: 1;
+      animation: buildingIn 1s .55s cubic-bezier(.22,1,.36,1) both;
+    }
+    .hero-sub-title {
+      font-family: var(--font-brand);
+      font-size: clamp(1.4rem, 3.5vw, 2.8rem);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--sea-dk);
+      margin-bottom: .6rem;
+      animation: fadeUp .6s .45s ease both;
+    }
+    .hero-tagline {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--sea-mid);
+      opacity: .85;
+      margin-bottom: 2rem;
+      animation: fadeUp .6s .5s ease both;
+    }
+    .hero-ctas {
+      display: flex; gap: .85rem; flex-wrap: wrap; justify-content: center;
+      animation: fadeUp .6s .58s ease both;
+    }
+    .hero-scroll {
+      position: absolute; bottom: 2.2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .45rem;
+      animation: fadeIn .8s 1.3s ease both;
+    }
+    .hero-scroll-line {
+      width: 1px; height: 38px;
+      background: linear-gradient(to bottom, transparent, var(--rose));
+      animation: scrollLine 2.2s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%, 100% { transform: scaleY(1); opacity: .5; }
+      50% { transform: scaleY(.45); opacity: .9; }
+    }
+    .hero-scroll-label {
+      font-family: var(--font-body); font-size: .5rem;
+      letter-spacing: .32em; text-transform: uppercase;
+      color: var(--sea-mid); opacity: .5;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-block;
+      padding: .95rem 2.6rem;
+      font-family: var(--font-body);
+      font-size: .68rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      transition: all .22s;
+      font-weight: 500;
+    }
+    .btn-ink { background: var(--dusk); color: var(--mist); }
+    .btn-ink:hover { background: var(--sea-dk); }
+    .btn-ghost {
+      background: transparent; color: var(--dusk);
+      border: 1px solid rgba(30,54,52,.24);
+    }
+    .btn-ghost:hover { border-color: var(--dusk); background: rgba(30,54,52,.05); }
+    .btn-ghost-cream {
+      background: transparent; color: var(--mist);
+      border: 1px solid rgba(238,248,246,.38);
+    }
+    .btn-ghost-cream:hover { border-color: var(--mist); background: rgba(238,248,246,.08); }
+    .btn-cream { background: var(--mist); color: var(--sea-dk); border: 1px solid rgba(58,136,128,.14); }
+    .btn-cream:hover { background: var(--mist-dk); }
+    .btn-gold { background: var(--sea); color: var(--dusk); }
+    .btn-gold:hover { background: var(--sea-mid); }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      background: var(--dusk);
+      border-top: 1px solid rgba(238,248,246,.06);
+      border-bottom: 1px solid rgba(238,248,246,.06);
+      overflow: hidden; padding: .88rem 0;
+    }
+    .marquee-track {
+      display: flex; white-space: nowrap;
+      animation: marquee 30s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item {
+      font-family: var(--font-body); font-size: .7rem;
+      letter-spacing: .24em; text-transform: uppercase;
+      color: var(--mist); opacity: .45; padding: 0 2.2rem; flex-shrink: 0;
+    }
+    .marquee-dot { color: var(--sea); opacity: .8; font-size: .48rem; vertical-align: middle; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── SECTION COMMONS ── */
+    .section-inner { max-width: 1180px; margin: 0 auto; padding: 0 3.5rem; }
+    .section-eyebrow {
+      font-family: var(--font-body);
+      font-size: .6rem; letter-spacing: .3em;
+      text-transform: uppercase; color: var(--rose-lt);
+      margin-bottom: 1.1rem;
+      display: flex; align-items: center; gap: .75rem;
+      font-style: italic;
+    }
+    .section-eyebrow::before {
+      content: ''; width: 26px; height: 1px;
+      background: currentColor; opacity: .5; flex-shrink: 0;
+    }
+    .section-eyebrow.centered { justify-content: center; }
+    .section-eyebrow.centered::before { display: none; }
+    h2.display {
+      font-family: var(--font-brand);
+      font-size: clamp(2.6rem, 5.5vw, 5rem);
+      letter-spacing: .06em; text-transform: uppercase;
+      line-height: .95; color: var(--mist);
+    }
+    h2.display.on-mist { color: var(--sea-dk); }
+    h2.display .accent { color: var(--sea); }
+    h2.display.on-mist .accent { color: var(--rose); }
+    .reveal {
+      opacity: 0; transform: translateY(22px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--mist);
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220'><g fill='none' stroke='%233A8880' stroke-linecap='round'><path d='M32,122 C40,110 46,108 48,114' stroke-opacity='0.048' stroke-width='0.68'/><path d='M48,114 C46,104 42,100 46,97' stroke-opacity='0.048' stroke-width='0.58'/><g transform='translate(168,52) rotate(18)' stroke-opacity='0.038'><path d='M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3' stroke-width='0.68'/><path d='M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3' transform='rotate(90)' stroke-width='0.68'/><path d='M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3' transform='rotate(180)' stroke-width='0.68'/><path d='M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3' transform='rotate(270)' stroke-width='0.68'/><circle r='1.5' stroke-width='0.44'/></g><circle cx='78' cy='178' r='2.2' fill='%233A8880' fill-opacity='0.046' stroke-width='0'/><circle cx='88' cy='174' r='1.5' fill='%233A8880' fill-opacity='0.038' stroke-width='0'/><circle cx='96' cy='181' r='1.2' fill='%233A8880' fill-opacity='0.03' stroke-width='0'/></g></svg>");
+      background-size: 220px 220px;
+      color: var(--sea-dk); padding: 9rem 0;
+    }
+    .about .section-eyebrow { color: var(--rose); }
+    .about-grid {
+      display: grid; grid-template-columns: 1.2fr 1fr;
+      gap: 6rem; align-items: start; margin-top: 3.8rem;
+    }
+    .about-body p {
+      font-size: 1.18rem; line-height: 1.88;
+      color: rgba(58,136,128,.72); margin-top: 1.4rem;
+      max-width: 48ch; font-weight: 300;
+    }
+    .about-body p:first-child { margin-top: 0; }
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; background: rgba(58,136,128,.11);
+      position: relative; overflow: visible;
+    }
+    .stat-card { background: var(--mist); padding: 2.4rem 2rem; position: relative; z-index: 1; }
+    .stat-card:first-child { grid-column: 1 / -1; }
+    .about-building-accent {
+      position: absolute;
+      right: -110px;
+      bottom: -10px;
+      height: 300px;
+      width: auto;
+      mix-blend-mode: multiply;
+      opacity: .75;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .stat-num {
+      font-family: var(--font-brand); font-size: 3.6rem;
+      letter-spacing: .04em; line-height: 1; color: var(--sea-dk);
+    }
+    .stat-label {
+      font-family: var(--font-body); font-size: .65rem;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--sea-mid); opacity: .65; margin-top: .45rem;
+    }
+
+    /* ── HOURS ── */
+    .hours { background: var(--sea-dk); padding: 8.5rem 0; position: relative; overflow: hidden; min-height: 100vh; scroll-snap-align: start; }
+    .hours .section-eyebrow { color: var(--rose-lt); }
+    .hours-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6rem; align-items: start; margin-top: 3.8rem;
+    }
+    .hours-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: .95rem 0; border-bottom: 1px solid rgba(254,252,234,.09);
+    }
+    .hours-day {
+      font-family: var(--font-body); font-size: .75rem;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(238,248,246,.45);
+    }
+    .hours-time {
+      font-family: var(--font-brand); font-size: 1.1rem;
+      letter-spacing: .05em; color: rgba(238,248,246,.34);
+    }
+    .hours-time.open { color: var(--mist); font-size: 1.22rem; }
+    .dinner-badge {
+      display: inline-flex; align-items: center; gap: .65rem;
+      margin-top: 2.2rem; padding: .7rem 1.4rem;
+      background: rgba(111,191,184,.12);
+      border: 1px solid rgba(111,191,184,.26);
+      font-family: var(--font-body); font-size: .62rem;
+      letter-spacing: .22em; text-transform: uppercase; color: var(--sea);
+    }
+    .dinner-badge::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--sea); animation: pulse 2.5s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.25} }
+    .location-card {
+      background: rgba(0,0,0,.14); padding: 3.2rem;
+      border: 1px solid rgba(238,248,246,.08);
+      position: relative; overflow: hidden;
+    }
+    .location-card::before {
+      content: ''; position: absolute; top: -40px; right: -40px;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(111,191,184,.1) 0%, transparent 70%);
+    }
+    .location-card h3 {
+      font-family: var(--font-brand); font-size: 1.55rem;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--mist); margin-bottom: 1.2rem; position: relative;
+    }
+    .location-card p {
+      font-family: var(--font-body); font-size: .92rem;
+      line-height: 1.95; color: rgba(238,248,246,.55);
+      font-weight: 300; position: relative;
+    }
+    .location-card .address-line {
+      font-family: var(--font-brand); font-size: 1.2rem;
+      letter-spacing: .06em; color: var(--mist);
+      margin: 1.8rem 0 1.2rem; position: relative;
+    }
+    .location-card .btn-ghost-cream { margin-top: 1.5rem; display: inline-block; position: relative; }
+
+    /* ── MENU ── */
+    .menu-section {
+      background: var(--dusk); padding: 8.5rem 0;
+      position: relative; overflow: hidden;
+      scroll-snap-align: start;
+    }
+    .menu-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 68% 42%, rgba(111,191,184,.12) 0%, transparent 58%);
+      pointer-events: none;
+    }
+    .menu-section .section-eyebrow { color: var(--rose-lt); }
+    .menu-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 3rem;
+    }
+    .menu-tabs {
+      display: flex; margin-bottom: 3.5rem;
+      border-bottom: 1px solid rgba(254,252,234,.1);
+    }
+    .menu-tab-btn {
+      font-family: var(--font-body); font-size: .68rem;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: rgba(238,248,246,.32); background: none; border: none;
+      padding: .9rem 2rem; cursor: pointer; position: relative; transition: color .2s;
+    }
+    .menu-tab-btn::after {
+      content: ''; position: absolute; bottom: -1px; left: 0; right: 0;
+      height: 1.5px; background: var(--sea);
+      transform: scaleX(0); transition: transform .25s;
+    }
+    .menu-tab-btn.active { color: var(--mist); }
+    .menu-tab-btn.active::after { transform: scaleX(1); }
+    .menu-panel { display: none; }
+    .menu-panel.active { display: block; }
+    .menu-cat-title {
+      font-family: var(--font-brand); font-size: 1.08rem;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: var(--sea); margin: 3.5rem 0 1.5rem;
+      padding-bottom: .6rem; border-bottom: 1px solid rgba(111,191,184,.2);
+    }
+    .menu-cat-title:first-child { margin-top: 0; }
+    .menu-items { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; }
+    .menu-item {
+      padding: 1.3rem 1.4rem;
+      background: rgba(238,248,246,.02);
+      border: 1px solid rgba(238,248,246,.045);
+      transition: background .2s;
+    }
+    .menu-item:hover { background: rgba(238,248,246,.055); }
+    .menu-item-header {
+      display: flex; justify-content: space-between;
+      align-items: baseline; gap: 1rem; margin-bottom: .35rem;
+    }
+    .menu-item-name {
+      font-family: var(--font-brand); font-size: 1rem;
+      letter-spacing: .06em; text-transform: uppercase; color: var(--mist);
+    }
+    .menu-item-price {
+      font-family: var(--font-brand); font-size: .95rem;
+      color: var(--sea); white-space: nowrap; flex-shrink: 0;
+    }
+    .menu-item-desc {
+      font-family: var(--font-body); font-size: .82rem;
+      line-height: 1.7; color: rgba(238,248,246,.38);
+      font-weight: 300; font-style: italic;
+    }
+    .menu-simple { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; }
+    .menu-simple-item {
+      display: flex; justify-content: space-between;
+      align-items: baseline; gap: 1rem; padding: .82rem 1.4rem;
+      background: rgba(238,248,246,.02);
+      border: 1px solid rgba(238,248,246,.045);
+    }
+    .menu-simple-item span:first-child {
+      font-family: var(--font-brand); font-size: .92rem;
+      letter-spacing: .05em; text-transform: uppercase; color: var(--mist);
+    }
+    .menu-simple-item span:last-child {
+      font-family: var(--font-brand); color: var(--sea);
+      font-size: .88rem; white-space: nowrap; flex-shrink: 0;
+    }
+    .menu-subcols { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .menu-subcol-title {
+      font-family: var(--font-body); font-size: .6rem;
+      letter-spacing: .24em; text-transform: uppercase;
+      color: rgba(238,248,246,.28); margin-bottom: 1rem; font-style: italic;
+    }
+    .menu-subcol-items { display: flex; flex-direction: column; gap: 1px; }
+    .cocktail-sub {
+      font-family: var(--font-body); font-size: .6rem;
+      letter-spacing: .24em; text-transform: uppercase;
+      color: rgba(238,248,246,.28); margin: 2rem 0 .9rem; font-style: italic;
+    }
+    .cocktail-sub:first-child { margin-top: 0; }
+    .menu-note {
+      margin-top: 3rem; font-family: var(--font-body); font-size: .82rem;
+      color: rgba(238,248,246,.26); font-style: italic; text-align: center;
+    }
+
+    /* ── RESERVATIONS ── */
+    .reservations {
+      background: var(--mist);
+      color: var(--sea-dk);
+      position: relative; overflow: hidden;
+      scroll-snap-align: start;
+      text-align: center;
+      padding: 3rem 0 0;
+    }
+    .reservations .section-eyebrow { color: var(--rose); }
+    .res-inner {
+      max-width: 1280px; margin: 0 auto; width: 100%;
+      padding: 0 3rem;
+      position: relative; z-index: 2;
+    }
+    .res-heading {
+      font-family: var(--font-brand);
+      font-size: clamp(4rem, 9vw, 9.5rem);
+      letter-spacing: .06em; text-transform: uppercase;
+      line-height: .9; color: var(--sea-dk);
+    }
+    .res-heading .accent { color: var(--rose); }
+    .res-building-group {
+      display: flex; flex-direction: column; align-items: center;
+      position: relative; margin-top: -1.5rem;
+    }
+    .res-bg-building {
+      width: min(560px, 55vw); height: auto; display: block;
+    }
+    .res-book-btn {
+      position: absolute;
+      bottom: 27%; left: 50%; transform: translateX(-50%);
+      white-space: nowrap;
+    }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--sea-dk); padding: 8.5rem 0; position: relative; overflow: hidden; min-height: 100vh; scroll-snap-align: start; }
+    .contact .section-eyebrow { color: var(--rose-lt); }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6rem; margin-top: 3.8rem;
+    }
+    .contact-col h3 {
+      font-family: var(--font-brand); font-size: 1.05rem;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--rose-lt); margin-bottom: .9rem;
+    }
+    .contact-col p, .contact-col a {
+      font-family: var(--font-body); font-size: .92rem;
+      line-height: 2.1; color: var(--mist); font-weight: 300;
+    }
+    .contact-col a:hover { color: var(--cream); }
+    .contact-block { margin-bottom: 2.5rem; }
+
+    /* ── SISTERS ── */
+    .sisters {
+      background: var(--dusk); padding: 5rem 0;
+      border-top: 1px solid rgba(238,248,246,.05);
+    }
+    .sisters-label {
+      font-family: var(--font-body); font-size: .58rem;
+      letter-spacing: .32em; text-transform: uppercase;
+      color: rgba(238,248,246,.26); text-align: center;
+      margin-bottom: 2.8rem; font-style: italic;
+    }
+    .sisters-logos {
+      display: flex; align-items: center;
+      justify-content: center; flex-wrap: wrap;
+      gap: 1rem 2.5rem;
+    }
+    .sister-logo {
+      width: 150px; height: 65px;
+      object-fit: contain; object-position: center;
+      opacity: .6; filter: brightness(2);
+      transition: opacity .25s;
+    }
+    .sister-logo:hover { opacity: 1; }
+    .sisters-logos a { display: flex; align-items: center; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dusk);
+      border-top: 1px solid rgba(238,248,246,.05);
+      padding: 5rem 3.5rem 2.5rem;
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      gap: 2rem; align-items: start;
+    }
+    .footer-left {
+      font-family: var(--font-body); font-size: .78rem;
+      line-height: 2.1; color: var(--mist); font-weight: 300;
+    }
+    .footer-center {
+      display: flex; flex-direction: column; align-items: center; gap: .65rem;
+    }
+    .footer-logo-img {
+      height: 62px; width: auto; opacity: .6; filter: brightness(2);
+    }
+    .footer-wordmark {
+      font-family: var(--font-brand); font-size: .9rem;
+      letter-spacing: .28em; text-transform: uppercase;
+      color: var(--mist);
+    }
+    .footer-right {
+      display: flex; flex-direction: column; align-items: flex-end; gap: .3rem;
+    }
+    .footer-right a {
+      font-family: var(--font-body); font-size: .66rem;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--mist); transition: color .2s;
+    }
+    .footer-right a:hover { color: var(--cream); }
+    .footer-bottom {
+      grid-column: 1 / -1;
+      border-top: 1px solid rgba(238,248,246,.05);
+      margin-top: 2.5rem; padding-top: 1.8rem;
+      text-align: center; font-family: var(--font-body);
+      font-size: .58rem; letter-spacing: .2em; text-transform: uppercase;
+      color: rgba(238,248,246,.55);
+    }
+
+    /* ── SCROLL OFFSETS ── */
+    #about, #hours, #menu, #reservations, #contact { scroll-margin-top: 95px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .nav-left, .nav-right { display: none; }
+      .nav-hamburger { display: flex; }
+      .mobile-drawer, .drawer-overlay { display: flex; }
+      nav { grid-template-columns: auto 1fr; padding: .9rem 1.5rem; }
+      .nav-center { grid-column: 1; }
+      .section-inner { padding: 0 1.5rem; }
+      .about-grid, .hours-layout, .contact-grid { grid-template-columns: 1fr; gap: 2.8rem; }
+      .menu-items, .menu-simple, .menu-subcols { grid-template-columns: 1fr; }
+      footer { grid-template-columns: 1fr; }
+      .footer-right { align-items: flex-start; }
+      .footer-bottom { grid-column: 1; }
+      .menu-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    }
+    @media (max-width: 600px) {
+      .hero { padding: 6.5rem 1.5rem 4.5rem; }
+      .btn { padding: .85rem 1.9rem; font-size: .62rem; }
+      footer { padding: 3.5rem 1.5rem 2rem; }
+      .about, .hours, .menu-section, .reservations, .contact { padding: 6rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── BOTANICAL SYMBOL DEFS ── -->
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+
+    <!-- TL corner: loose vine trailing down-right with wildflowers -->
+    <symbol id="co-tl" viewBox="0 0 170 170" fill="none" overflow="visible">
+      <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4,4 C8,24 11,52 8,80 C5,106 13,124 9,152" stroke-width="0.65"/>
+        <path d="M8,42 C24,28 46,30 62,44" stroke-width="0.55"/>
+        <path d="M6,20 C1,13 -1,5 3,2" stroke-width="0.44"/>
+        <path d="M6,20 C11,13 15,7 11,2" stroke-width="0.44"/>
+        <path d="M28,35 C24,23 18,20 14,26" stroke-width="0.46"/>
+        <path d="M28,35 C26,21 20,16 16,21" stroke-width="0.46"/>
+        <path d="M44,40 C42,28 36,23 32,28" stroke-width="0.44"/>
+        <g transform="translate(62,44) rotate(10)">
+          <path d="M0,-5 C-3,-8 -3,-14 0,-17 C3,-14 3,-8 0,-5" stroke-width="0.7"/>
+          <path d="M0,-5 C-3,-8 -3,-14 0,-17 C3,-14 3,-8 0,-5" transform="rotate(90)" stroke-width="0.7"/>
+          <path d="M0,-5 C-3,-8 -3,-14 0,-17 C3,-14 3,-8 0,-5" transform="rotate(180)" stroke-width="0.7"/>
+          <path d="M0,-5 C-3,-8 -3,-14 0,-17 C3,-14 3,-8 0,-5" transform="rotate(270)" stroke-width="0.7"/>
+          <circle r="2.2" stroke-width="0.55"/>
+        </g>
+        <g transform="translate(13,65) rotate(15)">
+          <path d="M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3" stroke-width="0.58"/>
+          <path d="M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3" transform="rotate(72)" stroke-width="0.58"/>
+          <path d="M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3" transform="rotate(144)" stroke-width="0.58"/>
+          <path d="M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3" transform="rotate(216)" stroke-width="0.58"/>
+          <path d="M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3" transform="rotate(288)" stroke-width="0.58"/>
+          <circle r="1.6" stroke-width="0.44"/>
+        </g>
+        <g transform="translate(16,92)">
+          <path d="M0,0 C-2,-6 -1,-12 2,-14" stroke-width="0.4"/>
+          <path d="M0,0 C3,-4 5,-9 4,-13" stroke-width="0.4"/>
+          <circle cx="2" cy="-14" r="2.6" fill="currentColor" fill-opacity="0.15" stroke-width="0.42"/>
+          <circle cx="5" cy="-13" r="1.8" fill="currentColor" fill-opacity="0.13" stroke-width="0.38"/>
+        </g>
+        <path d="M10,120 C22,112 28,120 24,130 C20,138 11,136 9,144" stroke-width="0.46"/>
+        <path d="M8,108 C2,101 1,93 5,91" stroke-width="0.42"/>
+        <path d="M8,108 C11,101 13,93 9,90" stroke-width="0.42"/>
+        <!-- hidden tiny scatter near branch -->
+        <circle cx="52" cy="54" r="1.4" fill="currentColor" fill-opacity="0.12" stroke-width="0"/>
+        <circle cx="38" cy="22" r="1.2" fill="currentColor" fill-opacity="0.1" stroke-width="0"/>
+      </g>
+    </symbol>
+
+    <!-- TR corner: stem spray from top-right, asymmetric heights -->
+    <symbol id="co-tr" viewBox="0 0 170 170" fill="none" overflow="visible">
+      <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M166,4 C160,22 154,50 158,80 C162,104 154,120 158,150" stroke-width="0.62"/>
+        <path d="M158,44 C142,28 120,30 104,44" stroke-width="0.55"/>
+        <path d="M164,22 C168,14 169,6 166,2" stroke-width="0.44"/>
+        <path d="M164,22 C158,16 155,8 158,3" stroke-width="0.44"/>
+        <path d="M140,37 C144,25 150,22 154,27" stroke-width="0.46"/>
+        <path d="M140,37 C142,23 148,18 152,23" stroke-width="0.44"/>
+        <path d="M126,40 C128,28 134,24 138,29" stroke-width="0.43"/>
+        <g transform="translate(104,44) rotate(-8)">
+          <path d="M0,-4 C-3,-7 -3,-13 0,-15 C3,-13 3,-7 0,-4" stroke-width="0.66"/>
+          <path d="M0,-4 C-3,-7 -3,-13 0,-15 C3,-13 3,-7 0,-4" transform="rotate(90)" stroke-width="0.66"/>
+          <path d="M0,-4 C-3,-7 -3,-13 0,-15 C3,-13 3,-7 0,-4" transform="rotate(180)" stroke-width="0.66"/>
+          <path d="M0,-4 C-3,-7 -3,-13 0,-15 C3,-13 3,-7 0,-4" transform="rotate(270)" stroke-width="0.66"/>
+          <circle r="2" stroke-width="0.52"/>
+        </g>
+        <g transform="translate(153,84) rotate(-14)">
+          <path d="M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3" stroke-width="0.55"/>
+          <path d="M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3" transform="rotate(72)" stroke-width="0.55"/>
+          <path d="M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3" transform="rotate(144)" stroke-width="0.55"/>
+          <path d="M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3" transform="rotate(216)" stroke-width="0.55"/>
+          <path d="M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3" transform="rotate(288)" stroke-width="0.55"/>
+          <circle r="1.5" stroke-width="0.42"/>
+        </g>
+        <g transform="translate(154,96)">
+          <path d="M0,0 C2,-6 1,-12 -2,-14" stroke-width="0.4"/>
+          <path d="M0,0 C-3,-4 -5,-9 -4,-13" stroke-width="0.4"/>
+          <circle cx="-2" cy="-14" r="2.4" fill="currentColor" fill-opacity="0.14" stroke-width="0.4"/>
+          <circle cx="-5" cy="-13" r="1.7" fill="currentColor" fill-opacity="0.12" stroke-width="0.38"/>
+        </g>
+        <path d="M158,122 C146,114 140,122 144,132 C148,140 158,138 160,146" stroke-width="0.45"/>
+        <circle cx="120" cy="54" r="1.3" fill="currentColor" fill-opacity="0.11" stroke-width="0"/>
+        <circle cx="134" cy="20" r="1.2" fill="currentColor" fill-opacity="0.1" stroke-width="0"/>
+      </g>
+    </symbol>
+
+    <!-- BL corner: sparse trailing vine from bottom-left, lots of breathing room -->
+    <symbol id="co-bl" viewBox="0 0 170 170" fill="none" overflow="visible">
+      <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4,166 C7,146 11,126 9,102 C7,80 15,64 12,44" stroke-width="0.6"/>
+        <path d="M8,62 C22,50 40,52 54,64" stroke-width="0.52"/>
+        <path d="M6,148 C1,140 -1,132 3,128" stroke-width="0.44"/>
+        <path d="M6,148 C11,140 14,134 10,130" stroke-width="0.44"/>
+        <g transform="translate(18,130) rotate(-18)">
+          <path d="M0,-4 C-3,-7 -3,-12 0,-14 C3,-12 3,-7 0,-4" stroke-width="0.62"/>
+          <path d="M0,-4 C-3,-7 -3,-12 0,-14 C3,-12 3,-7 0,-4" transform="rotate(90)" stroke-width="0.62"/>
+          <path d="M0,-4 C-3,-7 -3,-12 0,-14 C3,-12 3,-7 0,-4" transform="rotate(180)" stroke-width="0.62"/>
+          <path d="M0,-4 C-3,-7 -3,-12 0,-14 C3,-12 3,-7 0,-4" transform="rotate(270)" stroke-width="0.62"/>
+          <circle r="2" stroke-width="0.5"/>
+        </g>
+        <g transform="translate(14,88) rotate(8)">
+          <path d="M0,-2 C-2,-4 -2,-8 0,-10 C2,-8 2,-4 0,-2" stroke-width="0.52"/>
+          <path d="M0,-2 C-2,-4 -2,-8 0,-10 C2,-8 2,-4 0,-2" transform="rotate(72)" stroke-width="0.52"/>
+          <path d="M0,-2 C-2,-4 -2,-8 0,-10 C2,-8 2,-4 0,-2" transform="rotate(144)" stroke-width="0.52"/>
+          <path d="M0,-2 C-2,-4 -2,-8 0,-10 C2,-8 2,-4 0,-2" transform="rotate(216)" stroke-width="0.52"/>
+          <path d="M0,-2 C-2,-4 -2,-8 0,-10 C2,-8 2,-4 0,-2" transform="rotate(288)" stroke-width="0.52"/>
+          <circle r="1.3" stroke-width="0.4"/>
+        </g>
+        <g transform="translate(54,64) rotate(6)">
+          <path d="M0,-3 C-2,-6 -2,-10 0,-13 C2,-10 2,-6 0,-3" stroke-width="0.6"/>
+          <path d="M0,-3 C-2,-6 -2,-10 0,-13 C2,-10 2,-6 0,-3" transform="rotate(90)" stroke-width="0.6"/>
+          <path d="M0,-3 C-2,-6 -2,-10 0,-13 C2,-10 2,-6 0,-3" transform="rotate(180)" stroke-width="0.6"/>
+          <path d="M0,-3 C-2,-6 -2,-10 0,-13 C2,-10 2,-6 0,-3" transform="rotate(270)" stroke-width="0.6"/>
+          <circle r="1.8" stroke-width="0.46"/>
+        </g>
+        <path d="M11,102 C5,96 4,88 8,86" stroke-width="0.4"/>
+        <path d="M11,102 C13,96 14,88 10,85" stroke-width="0.4"/>
+        <circle cx="32" cy="112" r="1.5" fill="currentColor" fill-opacity="0.1" stroke-width="0"/>
+      </g>
+    </symbol>
+
+    <!-- BR corner: lush cluster from bottom-right — more layered -->
+    <symbol id="co-br" viewBox="0 0 170 170" fill="none" overflow="visible">
+      <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M166,166 C160,146 154,126 156,100 C158,76 148,60 150,40" stroke-width="0.62"/>
+        <path d="M157,142 C142,130 122,134 112,146" stroke-width="0.56"/>
+        <path d="M138,137 C136,125 130,120 126,126" stroke-width="0.46"/>
+        <path d="M138,137 C140,124 134,118 130,123" stroke-width="0.44"/>
+        <path d="M124,141 C122,130 116,126 112,130" stroke-width="0.44"/>
+        <g transform="translate(112,146) rotate(-14)">
+          <path d="M0,-5 C-3,-8 -3,-14 0,-17 C3,-14 3,-8 0,-5" stroke-width="0.68"/>
+          <path d="M0,-5 C-3,-8 -3,-14 0,-17 C3,-14 3,-8 0,-5" transform="rotate(90)" stroke-width="0.68"/>
+          <path d="M0,-5 C-3,-8 -3,-14 0,-17 C3,-14 3,-8 0,-5" transform="rotate(180)" stroke-width="0.68"/>
+          <path d="M0,-5 C-3,-8 -3,-14 0,-17 C3,-14 3,-8 0,-5" transform="rotate(270)" stroke-width="0.68"/>
+          <circle r="2.2" stroke-width="0.54"/>
+        </g>
+        <g transform="translate(120,132) rotate(22)">
+          <path d="M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3" stroke-width="0.58"/>
+          <path d="M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3" transform="rotate(72)" stroke-width="0.58"/>
+          <path d="M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3" transform="rotate(144)" stroke-width="0.58"/>
+          <path d="M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3" transform="rotate(216)" stroke-width="0.58"/>
+          <path d="M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3" transform="rotate(288)" stroke-width="0.58"/>
+          <circle r="1.6" stroke-width="0.44"/>
+        </g>
+        <path d="M150,96 C160,86 166,94 164,106 C162,116 150,114 150,104" stroke-width="0.46"/>
+        <g transform="translate(164,100) rotate(-5)">
+          <path d="M0,-3 C-2,-5 -2,-8 0,-10 C2,-8 2,-5 0,-3" stroke-width="0.52"/>
+          <path d="M0,-3 C-2,-5 -2,-8 0,-10 C2,-8 2,-5 0,-3" transform="rotate(90)" stroke-width="0.52"/>
+          <path d="M0,-3 C-2,-5 -2,-8 0,-10 C2,-8 2,-5 0,-3" transform="rotate(180)" stroke-width="0.52"/>
+          <path d="M0,-3 C-2,-5 -2,-8 0,-10 C2,-8 2,-5 0,-3" transform="rotate(270)" stroke-width="0.52"/>
+          <circle r="1.4" stroke-width="0.4"/>
+        </g>
+        <path d="M163,158 C155,148 147,146 143,152" stroke-width="0.46"/>
+        <circle cx="160" cy="156" r="2.4" fill="currentColor" fill-opacity="0.14" stroke-width="0.4"/>
+        <circle cx="166" cy="148" r="1.7" fill="currentColor" fill-opacity="0.12" stroke-width="0.38"/>
+        <circle cx="155" cy="162" r="1.4" fill="currentColor" fill-opacity="0.1" stroke-width="0"/>
+        <path d="M164,166 C156,154 148,150 144,156" stroke-width="0.44"/>
+        <path d="M152,60 C146,50 140,46 136,50" stroke-width="0.42"/>
+        <path d="M152,60 C154,50 150,44 146,48" stroke-width="0.42"/>
+        <circle cx="100" cy="140" r="1.4" fill="currentColor" fill-opacity="0.11" stroke-width="0"/>
+        <circle cx="130" cy="156" r="1.2" fill="currentColor" fill-opacity="0.09" stroke-width="0"/>
+      </g>
+    </symbol>
+
+  </defs>
+</svg>
+
+<!-- ── FIXED SITE HEADER ── -->
+<header class="site-header" id="site-header">
+  <div class="announce">
+    Dinner Coming Soon &nbsp;·&nbsp; Follow @abodekitchenpgh for the latest updates
+  </div>
+  <nav id="main-nav">
+    <div class="nav-left">
+      <a class="nav-link" href="#menu">Menu</a>
+      <a class="nav-link" href="#hours">Hours</a>
+    </div>
+    <div class="nav-center">
+      <img class="nav-logo-img"
+        src="https://abodekitchenandbar.com/wp-content/uploads/elementor/thumbs/abode-A-logo-OL-transparent-ivory-scaled-rlteh87wu24morvz32bdevjup0qwcloysgoq7e1iww.png"
+        alt="Abode Kitchen &amp; Bar logo" />
+    </div>
+    <div class="nav-right">
+      <a class="nav-link" href="https://instagram.com/abodekitchenpgh" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn-reserve-nav" href="https://www.opentable.com/r/abode-kitchen-and-bar-oakmont?corrid=baa95c80-1844-49be-a370-db8e3338e216&avt=eyJ2IjoyLCJtIjowLCJwIjowLCJzIjoxLCJuIjowfQ&p=2&sd=2026-04-30T19%3A00%3A00" target="_blank" rel="noopener">Reserve</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger-btn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile Drawer -->
+<div class="drawer-overlay" id="drawer-overlay"></div>
+<div class="mobile-drawer" id="mobile-drawer">
+  <button class="drawer-close" id="drawer-close">✕</button>
+  <a href="#menu">Menu</a>
+  <a href="#hours">Hours</a>
+  <a href="#reservations">Reserve</a>
+  <a href="#contact">Contact</a>
+  <a href="https://instagram.com/abodekitchenpgh" target="_blank" rel="noopener">Instagram</a>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <!-- unique corner botanicals -->
+  <svg class="floral-corner c-tl dusk-tone" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><use href="#co-tl"/></svg>
+  <svg class="floral-corner c-tr dusk-tone" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><use href="#co-tr"/></svg>
+  <svg class="floral-corner c-bl dusk-tone" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><use href="#co-bl"/></svg>
+  <svg class="floral-corner c-br dusk-tone" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><use href="#co-br"/></svg>
+  <span class="hero-eyebrow">Oakmont, PA</span>
+  <h1 class="hero-wordmark">Abode</h1>
+  <img
+    class="hero-building"
+    src="oakmont-building.png"
+    alt="Abode Kitchen &amp; Bar — 515 Allegheny Avenue, Oakmont PA"
+  />
+  <p class="hero-sub-title">Kitchen &amp; Bar</p>
+  <p class="hero-tagline">A neighborhood kitchen to call home</p>
+  <div class="hero-ctas">
+    <a href="https://www.opentable.com/r/abode-kitchen-and-bar-oakmont?corrid=baa95c80-1844-49be-a370-db8e3338e216&avt=eyJ2IjoyLCJtIjowLCJwIjowLCJzIjoxLCJuIjowfQ&p=2&sd=2026-04-30T19%3A00%3A00" target="_blank" rel="noopener" class="btn btn-ink">Reserve a Table</a>
+    <a href="#hours" class="btn btn-ghost">Hours &amp; Info</a>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="hero-scroll-line"></div>
+    <span class="hero-scroll-label">Scroll</span>
+  </div>
+</section>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Abode Kitchen &amp; Bar <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">515 Allegheny Avenue <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Oakmont, PA 15139 <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Weekend Brunch <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Saturday &amp; Sunday <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">10:00 AM – 3:00 PM <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Dinner Coming Soon <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Abode Kitchen &amp; Bar <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">515 Allegheny Avenue <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Oakmont, PA 15139 <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Weekend Brunch <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Saturday &amp; Sunday <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">10:00 AM – 3:00 PM <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Dinner Coming Soon <span class="marquee-dot">◆</span></span>
+  </div>
+</div>
+
+
+
+<!-- ── HOURS ── -->
+<section class="hours" id="hours">
+  <svg class="floral-corner c-tl mist-tone" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><use href="#co-tl"/></svg>
+  <svg class="floral-corner c-tr mist-tone" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><use href="#co-tr"/></svg>
+  <svg class="floral-corner c-bl mist-tone" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><use href="#co-bl"/></svg>
+  <svg class="floral-corner c-br mist-tone" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><use href="#co-br"/></svg>
+  <div class="section-inner">
+    <div class="reveal">
+      <!-- asymmetric wildflower sprig ornament — leans left, off-center cluster -->
+      <svg class="bot bot-ornament" viewBox="0 0 300 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M148,30 C122,28 96,34 68,28 C44,22 20,30 4,25" stroke-width="0.6"/>
+          <g transform="translate(60,28) rotate(-28)"><path d="M0,0 C-4,-3 -6,-13 0,-18 C6,-13 4,-3 0,0" stroke-width="0.65"/><path d="M0,0 L0,-18" stroke-width="0.3"/></g>
+          <g transform="translate(88,30) rotate(-14)"><path d="M0,-4 C-3,-7 -3,-13 0,-15 C3,-13 3,-7 0,-4" stroke-width="0.68"/><path d="M0,-4 C-3,-7 -3,-13 0,-15 C3,-13 3,-7 0,-4" transform="rotate(90)" stroke-width="0.68"/><path d="M0,-4 C-3,-7 -3,-13 0,-15 C3,-13 3,-7 0,-4" transform="rotate(180)" stroke-width="0.68"/><path d="M0,-4 C-3,-7 -3,-13 0,-15 C3,-13 3,-7 0,-4" transform="rotate(270)" stroke-width="0.68"/><circle r="2" stroke-width="0.52"/></g>
+          <g transform="translate(116,27) rotate(-8)"><path d="M0,0 C-3,-2 -5,-9 0,-12 C5,-9 3,-2 0,0" stroke-width="0.6"/></g>
+          <g transform="translate(36,24)"><circle cx="-4" cy="-9" r="2.2" fill="currentColor" fill-opacity="0.18" stroke-width="0.46"/><circle cx="2" cy="-13" r="2.5" fill="currentColor" fill-opacity="0.2" stroke-width="0.46"/><circle cx="8" cy="-8" r="1.8" fill="currentColor" fill-opacity="0.15" stroke-width="0.44"/><path d="M-4,-6 C-2,-9 0,-10 2,-10" stroke-width="0.35"/><path d="M2,-10 C5,-11 6,-10 8,-8" stroke-width="0.35"/></g>
+          <g transform="translate(130,32) rotate(8)"><path d="M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3" stroke-width="0.56"/><path d="M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3" transform="rotate(72)" stroke-width="0.56"/><path d="M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3" transform="rotate(144)" stroke-width="0.56"/><path d="M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3" transform="rotate(216)" stroke-width="0.56"/><path d="M0,-3 C-2,-5 -2,-9 0,-11 C2,-9 2,-5 0,-3" transform="rotate(288)" stroke-width="0.56"/><circle r="1.5" stroke-width="0.42"/></g>
+          <path d="M150,30 C174,28 198,34 224,28 C248,22 270,28 296,25" stroke-width="0.58"/>
+          <g transform="translate(168,29) rotate(16)"><path d="M0,0 C-3,-2 -5,-9 0,-12 C5,-9 3,-2 0,0" stroke-width="0.6"/></g>
+          <g transform="translate(200,30) rotate(22)"><path d="M0,-4 C-3,-7 -3,-13 0,-15 C3,-13 3,-7 0,-4" stroke-width="0.65"/><path d="M0,-4 C-3,-7 -3,-13 0,-15 C3,-13 3,-7 0,-4" transform="rotate(90)" stroke-width="0.65"/><path d="M0,-4 C-3,-7 -3,-13 0,-15 C3,-13 3,-7 0,-4" transform="rotate(180)" stroke-width="0.65"/><path d="M0,-4 C-3,-7 -3,-13 0,-15 C3,-13 3,-7 0,-4" transform="rotate(270)" stroke-width="0.65"/><circle r="2" stroke-width="0.5"/></g>
+          <g transform="translate(240,26) rotate(10)"><path d="M0,0 C-4,-3 -5,-12 0,-16 C5,-12 4,-3 0,0" stroke-width="0.62"/><path d="M0,0 L0,-16" stroke-width="0.28"/></g>
+          <g transform="translate(265,27)"><circle cx="0" cy="-8" r="2" fill="currentColor" fill-opacity="0.17" stroke-width="0.44"/><circle cx="6" cy="-11" r="2.4" fill="currentColor" fill-opacity="0.19" stroke-width="0.44"/><circle cx="12" cy="-7" r="1.7" fill="currentColor" fill-opacity="0.14" stroke-width="0.42"/></g>
+        </g>
+      </svg>
+      <div class="section-eyebrow">When to Visit</div>
+      <h2 class="display">Hours &amp; <span class="accent">Location</span></h2>
+    </div>
+    <div class="hours-layout">
+      <div class="reveal">
+        <div class="hours-table">
+          <div class="hours-row"><span class="hours-day">Monday</span><span class="hours-time">Closed</span></div>
+          <div class="hours-row"><span class="hours-day">Tuesday</span><span class="hours-time">Closed</span></div>
+          <div class="hours-row"><span class="hours-day">Wednesday</span><span class="hours-time">Closed</span></div>
+          <div class="hours-row"><span class="hours-day">Thursday</span><span class="hours-time">Closed</span></div>
+          <div class="hours-row"><span class="hours-day">Friday</span><span class="hours-time">Closed</span></div>
+          <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time open">10:00 AM – 3:00 PM</span></div>
+          <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time open">10:00 AM – 3:00 PM</span></div>
+        </div>
+        <div class="dinner-badge">Dinner Service Coming Soon</div>
+      </div>
+      <div class="location-card reveal">
+        <h3>Find Us in Oakmont</h3>
+        <p>Located in the heart of Oakmont along Allegheny Avenue — easy to find, easy to love.</p>
+        <div class="address-line">515 Allegheny Avenue<br/>Oakmont, PA 15139</div>
+        <p>Follow us on Instagram for the latest updates on dinner service and new menu drops.</p>
+        <a href="https://maps.google.com/?q=515+Allegheny+Ave+Oakmont+PA+15139" target="_blank" rel="noopener" class="btn btn-ghost-cream">Get Directions</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BOTANICAL DIVIDER: sea-dk → menu(dusk) ── -->
+<div class="bot-divider-wrap" style="background:var(--sea-dk);padding:6px 0;">
+  <svg class="bot bot-divider" viewBox="0 0 1920 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="none">
+    <g id="da3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M0,36 C90,32 200,40 310,35 C420,30 510,38 580,34 C650,30 730,38 830,34 C900,30 940,36 960,36" stroke-width="0.7" opacity="0.6"/>
+      <g transform="translate(310,32)">
+        <path d="M0,-5 C-3,-8 -3,-14 0,-17 C3,-14 3,-8 0,-5" stroke-width="0.72"/><path d="M0,-5 C-3,-8 -3,-14 0,-17 C3,-14 3,-8 0,-5" transform="rotate(90)" stroke-width="0.72"/><path d="M0,-5 C-3,-8 -3,-14 0,-17 C3,-14 3,-8 0,-5" transform="rotate(180)" stroke-width="0.72"/><path d="M0,-5 C-3,-8 -3,-14 0,-17 C3,-14 3,-8 0,-5" transform="rotate(270)" stroke-width="0.72"/>
+        <circle r="2" stroke-width="0.5"/>
+      </g>
+      <g transform="translate(200,34) rotate(-22)"><path d="M0,0 C-5,-3 -7,-14 0,-19 C7,-14 5,-3 0,0" stroke-width="0.68"/><path d="M0,0 L0,-19" stroke-width="0.34"/></g>
+      <g transform="translate(120,35) rotate(14)"><path d="M0,0 C-4,-3 -5,-10 0,-14 C5,-10 4,-3 0,0" stroke-width="0.64"/></g>
+      <g transform="translate(420,33) rotate(18)"><path d="M0,0 C-4,-3 -6,-12 0,-17 C6,-12 4,-3 0,0" stroke-width="0.66"/><path d="M0,0 L0,-17" stroke-width="0.3"/></g>
+      <g transform="translate(510,34) rotate(-14)"><path d="M0,0 C-4,-3 -5,-11 0,-15 C5,-11 4,-3 0,0" stroke-width="0.62"/></g>
+      <g transform="translate(650,33)">
+        <path d="M0,-4 C-3,-7 -3,-12 0,-14 C3,-12 3,-7 0,-4" stroke-width="0.68"/><path d="M0,-4 C-3,-7 -3,-12 0,-14 C3,-12 3,-7 0,-4" transform="rotate(72)" stroke-width="0.68"/><path d="M0,-4 C-3,-7 -3,-12 0,-14 C3,-12 3,-7 0,-4" transform="rotate(144)" stroke-width="0.68"/><path d="M0,-4 C-3,-7 -3,-12 0,-14 C3,-12 3,-7 0,-4" transform="rotate(216)" stroke-width="0.68"/><path d="M0,-4 C-3,-7 -3,-12 0,-14 C3,-12 3,-7 0,-4" transform="rotate(288)" stroke-width="0.68"/>
+        <circle r="1.8" stroke-width="0.46"/>
+      </g>
+      <g transform="translate(780,35) rotate(20)"><path d="M0,0 C-3,-2 -4,-9 0,-12 C4,-9 3,-2 0,0" stroke-width="0.6"/></g>
+      <g transform="translate(870,33)"><circle cx="-4" cy="-10" r="2" fill="currentColor" fill-opacity="0.22" stroke-width="0.44"/><circle cx="2" cy="-14" r="2.4" fill="currentColor" fill-opacity="0.24" stroke-width="0.44"/><circle cx="8" cy="-9" r="1.7" fill="currentColor" fill-opacity="0.18" stroke-width="0.42"/></g>
+    </g>
+    <use href="#da3" transform="translate(960,0)"/>
+  </svg>
+</div>
+
+<!-- ── MENU ── -->
+<section class="menu-section" id="menu">
+  <div class="section-inner">
+    <div class="menu-header reveal">
+      <div>
+        <div class="section-eyebrow">What We Serve</div>
+        <h2 class="display">Brunch &amp; <span class="accent">Dinner</span></h2>
+      </div>
+      <a href="https://www.opentable.com/r/abode-kitchen-and-bar-oakmont?corrid=baa95c80-1844-49be-a370-db8e3338e216&avt=eyJ2IjoyLCJtIjowLCJwIjowLCJzIjoxLCJuIjowfQ&p=2&sd=2026-04-30T19%3A00%3A00" target="_blank" rel="noopener" class="btn btn-cream">Reserve a Table</a>
+    </div>
+    <div class="menu-tabs reveal">
+      <button class="menu-tab-btn active" data-tab="food">Brunch</button>
+      <button class="menu-tab-btn" data-tab="dinner">Dinner</button>
+      <button class="menu-tab-btn" data-tab="drinks">Drinks</button>
+    </div>
+
+    <!-- FOOD PANEL -->
+    <div class="menu-panel active" id="tab-food">
+      <div class="menu-cat-title">Brunch</div>
+      <div class="menu-items">
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Granola</span><span class="menu-item-price">$10</span></div><p class="menu-item-desc">Triple seed &amp; nut granola, apple cider-poached pear, earl grey honey, almond milk</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Raw Oysters*</span><span class="menu-item-price">MP</span></div><p class="menu-item-desc">Pickled blackberry mignonette, cocktail sauce, hot sauce, lemon</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Cereal Milk French Toast</span><span class="menu-item-price">$11</span></div><p class="menu-item-desc">Brioche, brown-butter salted corn flake, powdered sugar, cereal milk crème anglaise</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Shrimp &amp; Grits Mornay</span><span class="menu-item-price">$16</span></div><p class="menu-item-desc">Buttermilk herb grits, crispy ancho shrimp, mornay sauce</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Beet &amp; Bean Toast*</span><span class="menu-item-price">$12</span></div><p class="menu-item-desc">Beet &amp; bean purée, poached egg, pea shoot, pickled onion, mole seco, sourdough</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Green Shakshuka*</span><span class="menu-item-price">$16</span></div><p class="menu-item-desc">Kale, spinach, arugula, shallot, garlic, dashi broth, poached eggs, house harissa, smoked feta, pickled pepper, grilled sourdough</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Sausage, Egg &amp; Cheese*</span><span class="menu-item-price">$11</span></div><p class="menu-item-desc">House-seasoned breakfast sausage, Cooper's white american, caramelized onion, fried egg, espresso aioli, brioche bun</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Country-Fried Revival*</span><span class="menu-item-price">$48</span></div><p class="menu-item-desc">Corn flake-crusted wagyu ribeye, sunny side eggs, pork belly gravy, pickled guindilla pepper, lemon</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Low Country Benedict*</span><span class="menu-item-price">$14</span></div><p class="menu-item-desc">Honey-glazed hoecakes, poached eggs, chipotle hollandaise, cool ranch crumble</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Blueberry Kale Salad</span><span class="menu-item-price">$16</span></div><p class="menu-item-desc">Blueberry lemon vinaigrette, smoked feta, shallot, marcona almond crumble, crispy onion</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">English Fry Up*</span><span class="menu-item-price">$15</span></div><p class="menu-item-desc">Two eggs any style, house-seasoned breakfast sausage, bbq baked beans, marinated cremini mushrooms, grilled tomatoes, sourdough toast</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Parmesan Fried Chicken Salad</span><span class="menu-item-price">$21</span></div><p class="menu-item-desc">Spring mix, chive dressing remix, marinated potatoes, 'nduja boursin crumbles, blistered tomatoes</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Birria Hash*</span><span class="menu-item-price">$17</span></div><p class="menu-item-desc">Birria-braised beef, breakfast potatoes, queso fresco, red onion, sunny side egg, cilantro</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Fried Chicken Sandwich</span><span class="menu-item-price">$15</span></div><p class="menu-item-desc">Harissa aioli, pickle, shredded iceberg, honey mustard vinaigrette, brioche bun</p></div>
+        <div class="menu-item" style="grid-column:1/-1"><div class="menu-item-header"><span class="menu-item-name">Shotgun Burger*</span><span class="menu-item-price">$21</span></div><p class="menu-item-desc">Char-grilled with special sauce, Cooper's white american, diced onion, brioche bun, colossal crisp fries</p></div>
+      </div>
+
+      <div class="menu-cat-title">Sides</div>
+      <div class="menu-simple">
+        <div class="menu-simple-item"><span>Two Eggs Any Style*</span><span>$5</span></div>
+        <div class="menu-simple-item"><span>Sourdough Toast &amp; House Blueberry Jam</span><span>$5</span></div>
+        <div class="menu-simple-item"><span>House-Seasoned Breakfast Sausage</span><span>$4</span></div>
+        <div class="menu-simple-item"><span>Pastrami Bacon</span><span>$4</span></div>
+        <div class="menu-simple-item"><span>Duck Fat Hash Brown</span><span>$5</span></div>
+        <div class="menu-simple-item"><span>Breakfast Potatoes</span><span>$5</span></div>
+        <div class="menu-simple-item"><span>Colossal Crisp Fries</span><span>$5</span></div>
+      </div>
+
+      <div class="menu-cat-title">Littles</div>
+      <div class="menu-items">
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Cereal &amp; Milk</span><span class="menu-item-price">$6</span></div><p class="menu-item-desc">Cinnamon toast crunch, fruity pebbles or lucky charms, whole or almond milk</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">French Toast</span><span class="menu-item-price">$7</span></div><p class="menu-item-desc">Powdered sugar, maple syrup</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Dino Nugs</span><span class="menu-item-price">$10</span></div><p class="menu-item-desc">Sliced apple, smiley tots</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Cheeseburger*</span><span class="menu-item-price">$12</span></div><p class="menu-item-desc">Cooper's white american, brioche bun, colossal crisp fries</p></div>
+      </div>
+      <p class="menu-note">*Consuming raw or undercooked meats, poultry, seafood, shellfish or eggs may increase your risk of foodborne illness. Menu items and pricing subject to change.</p>
+    </div>
+
+    <!-- DINNER PANEL -->
+    <div class="menu-panel" id="tab-dinner">
+      <div class="menu-cat-title">Appetizers</div>
+      <div class="menu-items">
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Grammy's Dill Dip</span><span class="menu-item-price">$11</span></div><p class="menu-item-desc">Mayo, sour cream, dill, crudité, sour cream &amp; chive chips</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Double-Down x Rapp Chicken Wings</span><span class="menu-item-price">$13</span></div><p class="menu-item-desc">Cornflake crust, deep six dry rub, golden aioli, grammy ranch</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Fried Feta Sticks</span><span class="menu-item-price">$12</span></div><p class="menu-item-desc">Cornflake crust, honey, lemon zest, smoked pepper ranch</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Oysters*</span><span class="menu-item-price">MP</span></div><p class="menu-item-desc">Pickled blackberry mignonette, cocktail sauce, hot sauce, lemon</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Swedish Meatballs</span><span class="menu-item-price">$15</span></div><p class="menu-item-desc">Beef, pork, Swedish cream sauce, pickled onion</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Adult Snack Pack</span><span class="menu-item-price">$16</span></div><p class="menu-item-desc">Sweet smoked bologna, pepperoni, bacon &amp; black pepper monterey jack, pepperoni cheddar, ranch-seasoned ritz crackers, house chocolate chip cookie</p></div>
+      </div>
+
+      <div class="menu-cat-title">Salads</div>
+      <div class="menu-items">
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">House</span><span class="menu-item-price">$9</span></div><p class="menu-item-desc">Spring mix, paris dressing, beemster snow, fresh herbs, candied pepitas</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Italian Chopped</span><span class="menu-item-price">$18</span></div><p class="menu-item-desc">Iceberg, pepperoncini vinaigrette, salami, crispy pepperoni, sweet &amp; spicy peppers, red onion, cucumber, black olive, parmesan, breadcrumb, balsamic reduction</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Sullivan's Caesar</span><span class="menu-item-price">$14</span></div><p class="menu-item-desc">Little gem, caesar dressing, locatelli, breadcrumb, tinned anchovy, pickled onion, guindilla pepper</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Parmesan Fried Chicken</span><span class="menu-item-price">$21</span></div><p class="menu-item-desc">Spring mix, chive dressing remix, marinated potatoes, crispy pepperoni, boursin crumbles, blistered tomatoes</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Blueberry Kale Salad</span><span class="menu-item-price">$16</span></div><p class="menu-item-desc">Blueberry lemon vinaigrette, smoked feta, red onion, marcona almond crumble, crispy onion</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Steak Frites</span><span class="menu-item-price">$28</span></div><p class="menu-item-desc">Spring mix, 6 minute egg, pack-a-punch honey mustard, smoked cheddar, red onion, potato sticks, herb marinated flank steak</p></div>
+      </div>
+      <div class="menu-simple" style="margin-top:1px;">
+        <div class="menu-simple-item"><span>Add Protein: Grilled Chicken Thigh</span><span>+$7</span></div>
+        <div class="menu-simple-item"><span>Add Protein: Grilled Shrimp</span><span>+$10</span></div>
+        <div class="menu-simple-item"><span>Add Protein: Marinated Flank Steak</span><span>+$15</span></div>
+      </div>
+
+      <div class="menu-cat-title">Vegetables</div>
+      <div class="menu-items">
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">BBQ Braised Carrots</span><span class="menu-item-price">$11</span></div><p class="menu-item-desc">Whipped tahini, salsa macha <em>(contains peanuts)</em></p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Eggplant Mornay</span><span class="menu-item-price">$14</span></div><p class="menu-item-desc">Romano-fried eggplant, white cheese sauce, buffalo sauce</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Cauliflower Au Gratin</span><span class="menu-item-price">$10</span></div><p class="menu-item-desc">White cheese sauce, brown-butter breadcrumb</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Blistered Snap Peas</span><span class="menu-item-price">$12</span></div><p class="menu-item-desc">Herb yogurt, pistachio dukkah</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Green Goddess Greens &amp; Beans</span><span class="menu-item-price">$13</span></div><p class="menu-item-desc">Butter bean, garlic, green goddess broth, sautéed and crispy kale</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Verde Potatoes</span><span class="menu-item-price">$10</span></div><p class="menu-item-desc">Fried fingerlings, crispy garlic chips, lemon, parmesan, chive</p></div>
+      </div>
+
+      <div class="menu-cat-title">Entrees</div>
+      <div class="menu-items">
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Shift Chicken</span><span class="menu-item-price">$26</span></div><p class="menu-item-desc">Tomato cream sauce, goat cheese, pepperoni jam, arugula, lemon</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Meatloaf</span><span class="menu-item-price">$27</span></div><p class="menu-item-desc">Beef, beemster, onion, garlic, paprika pommes purée, braised brown sugar greens, sauce robert*, crispy cabbage</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Pork &amp; Beans</span><span class="menu-item-price">$38</span></div><p class="menu-item-desc">Spice-crusted pork chop, bbq baked beans, grilled applesauce, charred apple sauerkraut</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Shotgun Burger*</span><span class="menu-item-price">$21</span></div><p class="menu-item-desc">Char-grilled with special sauce, Cooper's white american, diced onion, brioche bun, colossal crisp fries</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Jerk Chicken</span><span class="menu-item-price">$32</span></div><p class="menu-item-desc">Jerk chicken leg, jollof rice, pineapple glaze, coconut lime cabbage</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Baked Nordic Cod</span><span class="menu-item-price">$36</span></div><p class="menu-item-desc">White wine, lemon, herb, cream, caper, trout roe, brown-butter ritz crust, confit lemon</p></div>
+        <div class="menu-item" style="grid-column:1/-1"><div class="menu-item-header"><span class="menu-item-name">Steak &amp; Potatoes</span><span class="menu-item-price">$68</span></div><p class="menu-item-desc">16 oz. wagyu ribeye, coffee rub, verde fries, café de paris butter, house steak sauce</p></div>
+      </div>
+
+      <div class="menu-cat-title">Pasta</div>
+      <div class="menu-items">
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Blanco Bolognese</span><span class="menu-item-price">$25</span></div><p class="menu-item-desc">Rigatoni, ground chicken, pork belly, fennel, cream, white wine, parmesan, fennel pollen</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Spaghettios &amp; Mini Meatballs</span><span class="menu-item-price">$18</span></div><p class="menu-item-desc">Ring-shaped noodle, tomato cream sauce, parmesan</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Ratatouille Risotto</span><span class="menu-item-price">$22</span></div><p class="menu-item-desc">Tomato-fennel broth, parmesan, brown-butter fennel breadcrumb</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Elbow Mac &amp; Cheese</span><span class="menu-item-price">$16</span></div><p class="menu-item-desc">Pastrami bacon, shallot, smoked cheddar, Cooper's white american, hot sauce, cool ranch crumble</p></div>
+      </div>
+
+      <div class="menu-cat-title">Sweets</div>
+      <div class="menu-items">
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Bread Pudding</span><span class="menu-item-price">$12</span></div><p class="menu-item-desc">Cold crème anglaise, pickled blackberry</p></div>
+        <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Half-Baked Peanut Butter Cookie*</span><span class="menu-item-price">$15</span></div><p class="menu-item-desc">Vanilla bean ice cream, sweet &amp; spicy caramelized peanut</p></div>
+      </div>
+
+      <p class="menu-note">Dinner: Tuesday – Saturday, 4pm – 10pm &nbsp;·&nbsp; Bar open until midnight &nbsp;·&nbsp; 515 Allegheny Ave, Oakmont, PA 15139 &nbsp;·&nbsp; 412-827-0770<br>*Consuming raw or undercooked meats, poultry, seafood, shellfish or eggs may increase your risk of foodborne illness. Menu items and pricing subject to change.</p>
+    </div>
+
+    <!-- DRINKS PANEL -->
+    <div class="menu-panel" id="tab-drinks">
+      <div class="menu-cat-title">Breakfast Beverages</div>
+      <div class="menu-simple">
+        <div class="menu-simple-item"><span>Coffee</span><span>$3</span></div>
+        <div class="menu-simple-item"><span>La Prima Espresso</span><span>$3</span></div>
+        <div class="menu-simple-item"><span>Cappuccino</span><span>$5</span></div>
+        <div class="menu-simple-item"><span>Latte</span><span>$5</span></div>
+        <div class="menu-simple-item"><span>Earl Grey Tea</span><span>$3</span></div>
+        <div class="menu-simple-item"><span>Iced Strawberry Matcha Latte</span><span>$8</span></div>
+        <div class="menu-simple-item"><span>House-Made Cold Brew</span><span>$7</span></div>
+        <div class="menu-simple-item"><span>House-Made Fresh Juice</span><span>$6</span></div>
+      </div>
+
+      <div class="menu-cat-title">Beer</div>
+      <div class="menu-subcols">
+        <div>
+          <div class="menu-subcol-title">Bottles &amp; Cans</div>
+          <div class="menu-subcol-items">
+            <div class="menu-simple-item"><span>Michelob Ultra</span><span>$5</span></div>
+            <div class="menu-simple-item"><span>Modelo</span><span>$5</span></div>
+            <div class="menu-simple-item"><span>Guinness</span><span>$6</span></div>
+            <div class="menu-simple-item"><span>Southern Tier 2XIPA</span><span>$7</span></div>
+            <div class="menu-simple-item"><span>Hitchhiker Sour</span><span>$8</span></div>
+            <div class="menu-simple-item"><span>Athletic Lite NA</span><span>$5</span></div>
+            <div class="menu-simple-item"><span>Athletic Freewave NA</span><span>$5</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="menu-subcol-title">Drafts</div>
+          <div class="menu-subcol-items">
+            <div class="menu-simple-item"><span>IC Light</span><span>$5</span></div>
+            <div class="menu-simple-item"><span>Allegash White</span><span>$6</span></div>
+            <div class="menu-simple-item"><span>Great Lakes Eliot Ness</span><span>$6</span></div>
+            <div class="menu-simple-item"><span>Arsenal Cider</span><span>$9</span></div>
+            <div class="menu-simple-item"><span>Grist House Rotating</span><span>$8</span></div>
+            <div class="menu-simple-item"><span>Seasonal Rotating</span><span>$8</span></div>
+            <div class="menu-simple-item"><span>Rotating IPA</span><span>$8</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-cat-title">Wine</div>
+      <div class="menu-subcols">
+        <div>
+          <div class="menu-subcol-title">Reds</div>
+          <div class="menu-subcol-items">
+            <div class="menu-simple-item"><span>Red Blend — Scout's Honor '23, California</span><span>$14</span></div>
+            <div class="menu-simple-item"><span>Pinot Noir — Alain de la Trille '24, France</span><span>$12</span></div>
+            <div class="menu-simple-item"><span>Cabernet Sauvignon — 3SAPAS '23, Argentina</span><span>$11</span></div>
+            <div class="menu-simple-item"><span>Rosé — Ocean Roads '23, Australia</span><span>$9</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="menu-subcol-title">Whites</div>
+          <div class="menu-subcol-items">
+            <div class="menu-simple-item"><span>Riesling — Charles Smith Kung Fu Girl '24</span><span>$10</span></div>
+            <div class="menu-simple-item"><span>Pinot Gris — Porta Dante '23, Italy</span><span>$11</span></div>
+            <div class="menu-simple-item"><span>Sauvignon Blanc — Duckhorn '23, California</span><span>$11</span></div>
+            <div class="menu-simple-item"><span>Chardonnay — Montoya '23, California</span><span>$12</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-cat-title">Cocktails</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;">
+        <div>
+          <div class="cocktail-sub">Milk</div>
+          <div class="menu-items" style="grid-template-columns:1fr;">
+            <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Cinnamon Toast Crunch</span><span class="menu-item-price">$13</span></div><p class="menu-item-desc">Bourbon, amaretto, cinnamon, lemon</p></div>
+            <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Lucky Charms</span><span class="menu-item-price">$13</span></div><p class="menu-item-desc">Vodka, lemon, maple syrup</p></div>
+            <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Fruity Pebbles</span><span class="menu-item-price">$13</span></div><p class="menu-item-desc">Rum, italicus, earl grey, lemon</p></div>
+          </div>
+          <div class="cocktail-sub">Juice</div>
+          <div class="menu-items" style="grid-template-columns:1fr;">
+            <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Sister Mary</span><span class="menu-item-price">$14</span></div><p class="menu-item-desc">Peppercorn vodka, house V8, tabasco, horseradish, cracked pepper</p></div>
+            <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Morning Marg</span><span class="menu-item-price">$13</span></div><p class="menu-item-desc">Blanco tequila, strawberry, cointreau, lemon, coconut-matcha foam</p></div>
+          </div>
+        </div>
+        <div>
+          <div class="cocktail-sub">Coffee</div>
+          <div class="menu-items" style="grid-template-columns:1fr;">
+            <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Coffee &amp; A Donut</span><span class="menu-item-price">$13</span></div><p class="menu-item-desc">Krispy kreme dark rye, brown sugar, cinnamon, ango bitters, licor 43</p></div>
+            <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Monkey See Monkey Do</span><span class="menu-item-price">$14</span></div><p class="menu-item-desc">Vodka, banana liqueur, hazelnut liqueur, espresso, walnut bitters, cinnamon</p></div>
+            <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Espresso Martini</span><span class="menu-item-price">$14</span></div><p class="menu-item-desc">Vodka, licor 43, averna, fratello, black walnut bitters</p></div>
+          </div>
+          <div class="cocktail-sub">Bubbles</div>
+          <div class="menu-items" style="grid-template-columns:1fr;">
+            <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">The Cutie</span><span class="menu-item-price">$10</span></div><p class="menu-item-desc">Clementine juice, prosecco</p></div>
+            <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Raspberry French 75</span><span class="menu-item-price">$12</span></div><p class="menu-item-desc">Gin, raspberry, prosecco, lemon</p></div>
+            <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Prosecco — La Marca</span><span class="menu-item-price">$12</span></div><p class="menu-item-desc"></p></div>
+            <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">NA Prosecco — We Are Zero</span><span class="menu-item-price">$9</span></div><p class="menu-item-desc"></p></div>
+          </div>
+        </div>
+      </div>
+      <p class="menu-note">Menu items and pricing subject to change. Please inform your server of any allergies.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── RESERVATIONS ── -->
+<section class="reservations" id="reservations">
+  <svg class="floral-corner c-tl sea-tone" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><use href="#co-tl"/></svg>
+  <svg class="floral-corner c-tr sea-tone" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><use href="#co-tr"/></svg>
+  <div class="res-inner">
+    <div class="section-eyebrow centered reveal">Join Us</div>
+    <h2 class="res-heading reveal">Reserve Your <span class="accent">Table</span></h2>
+    <div class="res-building-group reveal">
+      <a href="https://www.opentable.com/r/abode-kitchen-and-bar-oakmont?corrid=baa95c80-1844-49be-a370-db8e3338e216&avt=eyJ2IjoyLCJtIjowLCJwIjowLCJzIjoxLCJuIjowfQ&p=2&sd=2026-04-30T19%3A00%3A00" target="_blank" rel="noopener" class="btn btn-gold" style="margin-top:2.5rem;display:inline-block;">Book on OpenTable</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── BOTANICAL DIVIDER: mist → contact(sea-dk) ── -->
+<div class="bot-divider-wrap" style="background:var(--mist);padding:6px 0;">
+  <svg class="bot bot-divider on-mist" viewBox="0 0 2000 72" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <g id="da4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M0,38 C60,34 140,42 230,37 C330,32 410,40 520,36 C620,32 700,40 790,36 C870,32 950,38 1000,36" stroke-width="0.7"/>
+      <g transform="translate(80,37)"><path d="M0,0 C-4,-11 -3,-21 0,-27" stroke-width="0.55"/><path d="M0,-13 C-7,-17 -15,-14 -16,-9 C-13,-4 -6,-7 0,-13" stroke-width="0.56"/><path d="M0,-13 C7,-17 15,-14 16,-9 C13,-4 6,-7 0,-13" stroke-width="0.56"/><path d="M0,-20 C-5,-22 -8,-28 -4,-30 C0,-28 0,-22 0,-20" stroke-width="0.46"/></g>
+      <g transform="translate(290,35)"><path d="M0,-7 C-4,-9 -6,-16 0,-20 C6,-16 4,-9 0,-7" stroke-width="0.68"/><path d="M0,-7 C-4,-9 -6,-16 0,-20 C6,-16 4,-9 0,-7" transform="rotate(72)" stroke-width="0.68"/><path d="M0,-7 C-4,-9 -6,-16 0,-20 C6,-16 4,-9 0,-7" transform="rotate(144)" stroke-width="0.68"/><path d="M0,-7 C-4,-9 -6,-16 0,-20 C6,-16 4,-9 0,-7" transform="rotate(216)" stroke-width="0.68"/><path d="M0,-7 C-4,-9 -6,-16 0,-20 C6,-16 4,-9 0,-7" transform="rotate(288)" stroke-width="0.68"/><circle r="2" stroke-width="0.56"/></g>
+      <g transform="translate(470,36)"><path d="M-8,2 C-18,-6 -22,-18 -14,-22 C-8,-20 -4,-10 -8,2" stroke-width="0.6"/><path d="M8,2 C18,-6 22,-18 14,-22 C8,-20 4,-10 8,2" stroke-width="0.6"/><path d="M-8,2 C-2,-4 2,-4 8,2" stroke-width="0.52"/></g>
+      <g transform="translate(640,36)"><circle cx="0" cy="-18" r="2.8" stroke-width="0.54"/><circle cx="-14" cy="-12" r="2" stroke-width="0.48"/><circle cx="10" cy="-8" r="1.6" stroke-width="0.44"/><path d="M0,-15 C-5,-16 -12,-15 -14,-12" stroke-width="0.4"/><path d="M0,-15 C4,-14 8,-12 10,-8" stroke-width="0.4"/></g>
+      <g transform="translate(810,36)"><path d="M0,0 C-3,-9 -2,-17 0,-23" stroke-width="0.52"/><path d="M0,-11 C-8,-14 -14,-11 -15,-7 C-11,-3 -5,-6 0,-11" stroke-width="0.54"/><path d="M0,-11 C5,-13 9,-10 8,-7 C5,-4 2,-7 0,-11" stroke-width="0.5"/></g>
+      <g transform="translate(940,35)"><path d="M0,-7 C-4,-9 -6,-16 0,-20 C6,-16 4,-9 0,-7" stroke-width="0.68"/><path d="M0,-7 C-4,-9 -6,-16 0,-20 C6,-16 4,-9 0,-7" transform="rotate(72)" stroke-width="0.68"/><path d="M0,-7 C-4,-9 -6,-16 0,-20 C6,-16 4,-9 0,-7" transform="rotate(144)" stroke-width="0.68"/><path d="M0,-7 C-4,-9 -6,-16 0,-20 C6,-16 4,-9 0,-7" transform="rotate(216)" stroke-width="0.68"/><path d="M0,-7 C-4,-9 -6,-16 0,-20 C6,-16 4,-9 0,-7" transform="rotate(288)" stroke-width="0.68"/><circle r="2" stroke-width="0.56"/></g>
+    </g>
+    <use href="#da4" transform="translate(1000,0)"/>
+  </svg>
+</div>
+
+<!-- ── CONTACT ── -->
+<section class="contact" id="contact">
+  <svg class="floral-corner c-tl dusk-tone" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><use href="#co-tl"/></svg>
+  <svg class="floral-corner c-tr dusk-tone" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><use href="#co-tr"/></svg>
+  <svg class="floral-corner c-bl dusk-tone" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><use href="#co-bl"/></svg>
+  <svg class="floral-corner c-br dusk-tone" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><use href="#co-br"/></svg>
+  <div class="section-inner">
+    <div class="reveal">
+      <svg class="bot bot-ornament" viewBox="0 0 280 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M30,26 C60,24 90,28 118,24 C142,20 162,26 186,22 C208,18 230,24 256,21" stroke-width="0.6"/>
+          <g transform="translate(68,26)"><path d="M0,0 C-2,-9 -1,-18 0,-24" stroke-width="0.52"/><path d="M0,-12 C-7,-16 -13,-13 -14,-9 C-10,-5 -5,-8 0,-12" stroke-width="0.54"/><path d="M0,-12 C6,-15 10,-12 9,-8 C6,-5 2,-8 0,-12" stroke-width="0.5"/></g>
+          <g transform="translate(118,24)"><path d="M0,-6 C-4,-8 -5,-15 0,-18 C5,-15 4,-8 0,-6" stroke-width="0.68"/><path d="M0,-6 C-4,-8 -5,-15 0,-18 C5,-15 4,-8 0,-6" transform="rotate(72)" stroke-width="0.68"/><path d="M0,-6 C-4,-8 -5,-15 0,-18 C5,-15 4,-8 0,-6" transform="rotate(144)" stroke-width="0.68"/><path d="M0,-6 C-4,-8 -5,-15 0,-18 C5,-15 4,-8 0,-6" transform="rotate(216)" stroke-width="0.68"/><path d="M0,-6 C-4,-8 -5,-15 0,-18 C5,-15 4,-8 0,-6" transform="rotate(288)" stroke-width="0.68"/><circle r="1.8" stroke-width="0.52"/></g>
+          <g transform="translate(172,23)"><path d="M0,0 C-1,-7 -1,-14 0,-19" stroke-width="0.48"/><path d="M0,-9 C-5,-12 -10,-10 -11,-7 C-8,-3 -4,-5 0,-9" stroke-width="0.5"/><path d="M0,-9 C5,-11 8,-9 7,-6 C4,-3 1,-5 0,-9" stroke-width="0.46"/><circle cx="0" cy="-20" r="2.2" stroke-width="0.48"/></g>
+          <g transform="translate(210,22)"><path d="M0,-5 C-4,-7 -5,-14 0,-17 C5,-14 4,-7 0,-5" stroke-width="0.6"/><path d="M0,-5 C-4,-7 -5,-14 0,-17 C5,-14 4,-7 0,-5" transform="rotate(90)" stroke-width="0.6"/><path d="M0,-5 C-4,-7 -5,-14 0,-17 C5,-14 4,-7 0,-5" transform="rotate(180)" stroke-width="0.6"/><path d="M0,-5 C-4,-7 -5,-14 0,-17 C5,-14 4,-7 0,-5" transform="rotate(270)" stroke-width="0.6"/><circle r="1.5" stroke-width="0.5"/></g>
+          <g transform="translate(40,24)"><circle cx="0" cy="-12" r="2.4" stroke-width="0.48"/><circle cx="-10" cy="-8" r="1.6" stroke-width="0.42"/><circle cx="8" cy="-6" r="1.4" stroke-width="0.4"/><path d="M0,-9 C-4,-10 -8,-9 -10,-8" stroke-width="0.36"/><path d="M0,-9 C3,-9 6,-8 8,-6" stroke-width="0.36"/></g>
+        </g>
+      </svg>
+      <div class="section-eyebrow">Get in Touch</div>
+      <h2 class="display">Come <span class="accent">Find Us</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-col reveal">
+        <div class="contact-block"><h3>Address</h3><p>515 Allegheny Avenue<br/>Oakmont, PA 15139</p></div>
+        <div class="contact-block"><h3>Brunch Hours</h3><p>Saturday &amp; Sunday<br/>10:00 AM – 3:00 PM</p></div>
+        <div class="contact-block"><h3>Social</h3><p><a href="https://instagram.com/abodekitchenpgh" target="_blank" rel="noopener">@abodekitchenpgh on Instagram</a></p></div>
+      </div>
+      <div class="contact-col reveal">
+        <div class="contact-block"><h3>Reservations</h3><p><a href="https://www.opentable.com/r/abode-kitchen-and-bar-oakmont?corrid=baa95c80-1844-49be-a370-db8e3338e216&avt=eyJ2IjoyLCJtIjowLCJwIjowLCJzIjoxLCJuIjowfQ&p=2&sd=2026-04-30T19%3A00%3A00" target="_blank" rel="noopener">Book via OpenTable →</a></p></div>
+        <div class="contact-block"><h3>Careers</h3><p><a href="https://abodekitchenandbar.com/available-positions/" target="_blank" rel="noopener">View Available Positions →</a></p></div>
+        <div class="contact-block"><h3>Privacy</h3><p><a href="https://abodekitchenandbar.com/privacy-policy/" target="_blank" rel="noopener">Privacy Policy →</a></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SISTER RESTAURANTS ── -->
+<section class="sisters">
+  <div class="sisters-label">Part of Our Restaurant Family</div>
+  <div class="sisters-logos section-inner">
+    <a href="https://carnivorespgh.com" target="_blank" rel="noopener"><img class="sister-logo" src="https://abodekitchenandbar.com/wp-content/uploads/2025/12/carnivores-vector-logo-2025.12v1-ivory-1024x777.png" alt="Carnivores" /></a>
+    <a href="https://thepubat333.com" target="_blank" rel="noopener"><img class="sister-logo" src="https://abodekitchenandbar.com/wp-content/uploads/2025/12/PUB_333_logo_vector-2025.12v1-ivory.png" alt="The Pub at 333" /></a>
+    <a href="https://thelotpgh.com" target="_blank" rel="noopener"><img class="sister-logo" src="https://abodekitchenandbar.com/wp-content/uploads/2025/12/theLot_Logo_Main_BW_no-tagline-2025.12v1-ivory-1024x306.png" alt="The Lot at Edgewater" /></a>
+    <a href="https://michaelaspgh.com" target="_blank" rel="noopener"><img class="sister-logo" src="https://abodekitchenandbar.com/wp-content/uploads/2025/12/michael-a-vector-logo-2025.12v1-ivory-1024x165.png" alt="Michael A" /></a>
+    <a href="https://vinniespgh.com" target="_blank" rel="noopener"><img class="sister-logo" src="https://abodekitchenandbar.com/wp-content/uploads/2025/12/vinnies-logo-final-2025.12v1-ivory-1024x615.png" alt="Vinnie's Tavern" /></a>
+    <a href="https://hoffstots.com" target="_blank" rel="noopener"><img class="sister-logo" src="https://abodekitchenandbar.com/wp-content/uploads/2025/12/hoffstots-2025.12v1-ivory-1024x598.png" alt="Hoff Stots" /></a>
+    <a href="https://twinborobar.com" target="_blank" rel="noopener"><img class="sister-logo" src="https://abodekitchenandbar.com/wp-content/uploads/2025/12/TB-logo-2025.12v1-ivory.png" alt="Twin Boro Bar" /></a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-left">
+    <p>A neighborhood kitchen &amp; bar in the<br/>heart of Oakmont, Pennsylvania.</p>
+    <p style="margin-top:.5rem;">515 Allegheny Avenue · Oakmont, PA 15139</p>
+  </div>
+  <div class="footer-center">
+    <svg class="bot" viewBox="0 0 320 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:280px;max-width:70vw;height:24px;color:rgba(254,252,234,.16);display:block;margin-bottom:1.2rem;" aria-hidden="true">
+      <g stroke="currentColor" stroke-linecap="round">
+        <path d="M0,16 C40,14 80,18 120,15 C160,12 200,18 240,15 C280,12 305,16 320,16" stroke-width="0.65"/>
+        <g transform="translate(60,15)"><path d="M0,-6 C-4,-8 -5,-14 0,-17 C5,-14 4,-8 0,-6" stroke-width="0.65"/><path d="M0,-6 C-4,-8 -5,-14 0,-17 C5,-14 4,-8 0,-6" transform="rotate(72)" stroke-width="0.65"/><path d="M0,-6 C-4,-8 -5,-14 0,-17 C5,-14 4,-8 0,-6" transform="rotate(144)" stroke-width="0.65"/><path d="M0,-6 C-4,-8 -5,-14 0,-17 C5,-14 4,-8 0,-6" transform="rotate(216)" stroke-width="0.65"/><path d="M0,-6 C-4,-8 -5,-14 0,-17 C5,-14 4,-8 0,-6" transform="rotate(288)" stroke-width="0.65"/><circle r="1.8" stroke-width="0.5"/></g>
+        <g transform="translate(160,15)"><path d="M0,0 C-1,-9 -1,-16 0,-22" stroke-width="0.55"/><path d="M0,-10 C-7,-14 -13,-12 -15,-8" stroke-width="0.5"/><path d="M0,-10 C7,-14 13,-12 15,-8" stroke-width="0.5"/></g>
+        <g transform="translate(260,15)"><path d="M0,-6 C-4,-8 -5,-14 0,-17 C5,-14 4,-8 0,-6" stroke-width="0.65"/><path d="M0,-6 C-4,-8 -5,-14 0,-17 C5,-14 4,-8 0,-6" transform="rotate(72)" stroke-width="0.65"/><path d="M0,-6 C-4,-8 -5,-14 0,-17 C5,-14 4,-8 0,-6" transform="rotate(144)" stroke-width="0.65"/><path d="M0,-6 C-4,-8 -5,-14 0,-17 C5,-14 4,-8 0,-6" transform="rotate(216)" stroke-width="0.65"/><path d="M0,-6 C-4,-8 -5,-14 0,-17 C5,-14 4,-8 0,-6" transform="rotate(288)" stroke-width="0.65"/><circle r="1.8" stroke-width="0.5"/></g>
+      </g>
+    </svg>
+    <img class="footer-logo-img"
+      src="https://abodekitchenandbar.com/wp-content/uploads/elementor/thumbs/abode-A-logo-OL-transparent-ivory-scaled-rlteh87wu24morvz32bdevjup0qwcloysgoq7e1iww.png"
+      alt="Abode" />
+    <span class="footer-wordmark">Abode Kitchen &amp; Bar</span>
+  </div>
+  <div class="footer-right">
+    <a href="#menu">Menu</a>
+    <a href="https://www.opentable.com/r/abode-kitchen-and-bar-oakmont?corrid=baa95c80-1844-49be-a370-db8e3338e216&avt=eyJ2IjoyLCJtIjowLCJwIjowLCJzIjoxLCJuIjowfQ&p=2&sd=2026-04-30T19%3A00%3A00" target="_blank" rel="noopener">Reservations</a>
+    <a href="https://instagram.com/abodekitchenpgh" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://abodekitchenandbar.com/available-positions/" target="_blank" rel="noopener">Careers</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="footer-bottom">© 2025 Abode Kitchen &amp; Bar · Oakmont, PA · Site by Cebsource</div>
+</footer>
+
+<script>
+  // Sticky nav
+  const siteHeader = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    siteHeader.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // Menu tabs
+  document.querySelectorAll('.menu-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.menu-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 65);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Mobile drawer
+  const hamburger = document.getElementById('hamburger-btn');
+  const drawer = document.getElementById('mobile-drawer');
+  const overlay = document.getElementById('drawer-overlay');
+  const drawerClose = document.getElementById('drawer-close');
+
+  function openDrawer() {
+    drawer.classList.add('open');
+    overlay.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    overlay.classList.remove('visible');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', openDrawer);
+  drawerClose.addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+</script>
+</body>
+</html>
